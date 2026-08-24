@@ -223,6 +223,6 @@ const CONFIG = {
   // ---------------------------------------------------------------------
   textos: {
     subAbertura: "Sua presença é o presente mais importante para nós.",
-    avisoFinal: "Para deixar nossas fotos ainda mais bonitas, contamos com você para seguir o dress code acima. Para o nosso conforto e segurança de todos, pedimos moderação no consumo de bebidas alcoólicas durante a celebração. Contamos com a compreensão e carinho de sempre! 💛",
+    avisoFinal: "Para deixar nossas fotos ainda mais bonitas, contamos com você para seguir o dress code acima e para quem for consumir bebidas alcoólicas, pedimos que traga oque for beber!🍻"
   },
 };

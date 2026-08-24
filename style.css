@@ -474,7 +474,7 @@ form input:focus { outline: 2px solid var(--gold); }
   padding-bottom: 90px;
 }
 .dresscode-image {
-  max-width: 640px;
+  max-width: 940px;
   width: 100%;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
@@ -488,7 +488,14 @@ form input:focus { outline: 2px solid var(--gold); }
 }
 .signature {
   font-size: 2rem;
-  color: var(--brown-dark);
+  color: var(--bg-cream-alt);
+  background: var( --brown-mid);
+  display: inline-block;
+  padding: 6px 18px;
+  border-radius: 999px;
+  box-shadow: var(--shadow);  
+
+
 }
 
 .footer {
@@ -505,4 +512,9 @@ form input:focus { outline: 2px solid var(--gold); }
   .info-card { padding: 20px 16px; }
   .cd-box { min-width: 60px; padding: 12px 14px; }
   .map-wrapper iframe { height: 280px; }
+}
+.final-msg {
+  font-size: 0.9rem;
+  font-style: italic;
+  font-weight: bold;
 }
