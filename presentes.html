@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lista de Presentes — Chá de Panela Ricardo & Norma</title>
+<meta name="description" content="Lista de presentes do Chá de Panela de Ricardo & Norma" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="site-bg-blur"></div>
+
+<div id="page">
+
+  <section class="section" id="presentes-page">
+    <a href="index.html" class="btn-voltar">← Voltar para o convite</a>
+
+    <div class="gifts-page-header">
+      <h1 class="section-title">🎁 Lista de Presentes</h1>
+      <p class="section-sub">Escolha um mimo com carinho para o nosso novo lar 💛 Ao selecionar, o item fica reservado só para você — assim ninguém repete o mesmo presente.</p>
+    </div>
+
+    <div id="presentes-demo-banner" class="demo-banner" style="display:none;">
+      ⚠️ Modo demonstração: configure o Apps Script em <code>config.js</code> para que as reservas sejam salvas de verdade e compartilhadas entre todos os convidados.
+    </div>
+
+    <div id="presentes-loading" class="loading">Carregando lista de presentes...</div>
+
+    <div id="gifts-categories"></div>
+
+    <a href="index.html" class="btn-voltar" style="margin-top: 40px;">← Voltar para o convite</a>
+  </section>
+
+  <div class="modal-overlay" id="gift-modal">
+    <div class="modal-box">
+      <button class="modal-close" id="gift-modal-close">&times;</button>
+      <h3 id="gift-modal-title">Reservar presente</h3>
+      <p class="modal-item-name" id="gift-modal-item"></p>
+      <form id="gift-form">
+        <label>Seu nome
+          <input type="text" id="gift-name" required placeholder="Ex: Maria Silva" />
+        </label>
+        <label>Seu e-mail
+          <input type="email" id="gift-email" required placeholder="Ex: maria@email.com" />
+        </label>
+        <button type="submit" class="btn-primary">Confirmar reserva 🎁</button>
+      </form>
+      <p class="modal-feedback" id="gift-feedback"></p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>Feito com 💛 para o nosso Chá de Panela</p>
+  </footer>
+
+</div><!-- /#page -->
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

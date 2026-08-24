@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chá de Panela — Ricardo & Norma</title>
+<meta name="description" content="Convite interativo do Chá de Panela de Ricardo & Norma" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- Fundo decorativo sutil (a própria imagem do convite, desfocada) -->
+<div class="site-bg-blur"></div>
+
+<div id="page">
+
+  <!-- ================= HERO = IMAGEM DO CONVITE, COMPLETA ================= -->
+  <section class="hero" id="hero">
+    <img
+      src="assets/convite.jpg"
+      alt="Convite Chá de Panela de Ricardo e Norma — 10 de outubro de 2026 às 15h30"
+      class="hero-image"
+    />
+    <div class="hero-caption">
+      <p class="hero-sub" id="txt-sub-abertura"></p>
+      <a href="#detalhes" class="scroll-cta">Ver detalhes ↓</a>
+    </div>
+  </section>
+
+  <!-- ================= DETALHES DO EVENTO ================= -->
+  <section class="section" id="detalhes">
+    <h2 class="section-title">Detalhes do Evento</h2>
+    <div class="cards-row">
+      <div class="info-card">
+        <div class="info-icon" id="icon-data"></div>
+        <div class="info-label">Data</div>
+        <div class="info-value" id="info-data">—</div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon" id="icon-hora"></div>
+        <div class="info-label">Hora</div>
+        <div class="info-value" id="info-hora">—</div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon" id="icon-local"></div>
+        <div class="info-label">Local</div>
+        <div class="info-value" id="info-local">—</div>
+      </div>
+    </div>
+
+    <div class="countdown" id="countdown">
+      <div class="cd-box"><span id="cd-dias">00</span><small>dias</small></div>
+      <div class="cd-box"><span id="cd-horas">00</span><small>horas</small></div>
+      <div class="cd-box"><span id="cd-min">00</span><small>min</small></div>
+      <div class="cd-box"><span id="cd-seg">00</span><small>seg</small></div>
+    </div>
+  </section>
+
+  <!-- ================= LISTA DE PRESENTES (botão de acesso) ================= -->
+  <section class="section alt" id="presentes">
+    <h2 class="section-title">Lista de Presentes</h2>
+    <p class="section-sub">Preparamos uma lista completa, organizada por cômodo, para te ajudar a escolher o mimo perfeito para o nosso novo lar 💛</p>
+    <a href="presentes.html" class="btn-primary btn-gift-link">🎁 Ver Lista de Presentes</a>
+  </section>
+
+  <!-- ================= CONFIRMAÇÃO DE PRESENÇA ================= -->
+  <section class="section" id="rsvp">
+    <h2 class="section-title">Confirmação de Presença</h2>
+    <p class="section-sub">Por favor, confirme até <strong>03/10/2026</strong> para que possamos nos organizar 💌</p>
+
+    <form id="rsvp-form" class="rsvp-form">
+      <label>Nome completo
+        <input type="text" id="rsvp-name" required placeholder="Seu nome" />
+      </label>
+      <label>E-mail
+        <input type="email" id="rsvp-email" required placeholder="seuemail@exemplo.com" />
+      </label>
+
+      <div class="rsvp-choice">
+        <button type="button" class="rsvp-btn rsvp-yes" data-value="vou" id="btn-vou">
+          ✅ Vou comparecer
+        </button>
+        <button type="button" class="rsvp-btn rsvp-no" data-value="naovou" id="btn-nao-vou">
+          ❌ Não vou comparecer
+        </button>
+      </div>
+
+      <input type="hidden" id="rsvp-selected" value="" />
+    </form>
+    <p class="rsvp-feedback" id="rsvp-feedback"></p>
+  </section>
+
+  <!-- ================= MAPA ================= -->
+  <section class="section alt" id="mapa">
+    <h2 class="section-title">Como Chegar</h2>
+    <p class="section-sub" id="mapa-aviso"></p>
+    <div class="map-wrapper">
+      <iframe
+        id="map-iframe"
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- ================= MENSAGEM FINAL / DRESS CODE ================= -->
+  <section class="section final-section">
+    <img src="assets/dresscode.jpg" alt="Pedido especial aos convidados - dress code" class="dresscode-image" />
+    <p class="final-msg" id="txt-aviso-final"></p>
+    <p class="signature script">Com carinho, Ricardo &amp; Norma</p>
+  </section>
+
+  <footer class="footer">
+    <p>Feito com 💛 para o nosso Chá de Panela</p>
+  </footer>
+
+</div><!-- /#page -->
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
