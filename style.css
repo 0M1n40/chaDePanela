@@ -491,8 +491,8 @@ form input:focus { outline: 2px solid var(--gold); }
   color: var(--bg-cream-alt);
   background: var( --brown-mid);
   display: inline-block;
-  padding: 6px 18px;
-  border-radius: 999px;
+  padding: 6px 60px;
+  border-radius: 39px;
   box-shadow: var(--shadow);  
 
 
