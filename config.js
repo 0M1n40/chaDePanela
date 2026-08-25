@@ -7,6 +7,16 @@
    ========================================================================== */
 
 const CONFIG = {
+
+  // ---------------------------------------------------------------------
+  // PIX PARA PRESENTES EM DINHEIRO (opcional)
+  // ---------------------------------------------------------------------
+  pix: {
+    chave: "(21) 981918358",      // ⚠️ Substitua pelo número de telefone/chave dela
+    tipo: "Celular",               // Ex: Celular, CPF, E-mail ou Aleatória
+    titular: "Norma Beatriz",              // Nome que aparece na conta
+  },
+
   // ---------------------------------------------------------------------
   // DETALHES DO EVENTO 🆗
   // ---------------------------------------------------------------------
@@ -85,7 +95,7 @@ const CONFIG = {
   // ---------------------------------------------------------------------
   // Este mesmo link agora também é usado pela Confirmação de Presença
   // (aba "RSVP" na mesma planilha).
-  appsScriptUrl: "https://script.google.com/macros/s/AKfycbyB0NWQOGL05UdZqbk6ubkb8bCu70LnZZh9SeC6sR5UskFQCvjmq1jCEIRCsURR5qYKzg/exec",
+  appsScriptUrl: "https://script.google.com/macros/s/AKfycbwZivPIAEZL0jmJ3rDNxNCR733CECikWG3Sz4VdN-U_MXVgG2A_HRBPgWM6GqaRoF90hQ/exec",
 
   presentesDemo: [
     {

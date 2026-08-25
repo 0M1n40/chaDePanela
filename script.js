@@ -44,6 +44,7 @@ function preencherCamposLocalStorage() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  configurarPix();
   preencherTextosEstaticos();
   preencherDetalhesEvento();
   preencherIcones();
@@ -418,4 +419,49 @@ async function reservarPresentesAPI(itens, nome, email) {
     console.error(err);
     return false;
   }
+}
+/* ---------------- COPIAR CHAVE PIX ---------------- */
+function configurarPix() {
+  const btnCopy = document.getElementById("btn-copy-pix");
+  const pixKeyVal = document.getElementById("pix-key-text");
+  const pixTypeLabel = document.getElementById("pix-type-label");
+  const feedback = document.getElementById("pix-feedback");
+
+  if (!btnCopy || !CONFIG.pix) return;
+
+  if (pixKeyVal && CONFIG.pix.chave) {
+    pixKeyVal.textContent = CONFIG.pix.chave;
+  }
+  if (pixTypeLabel && CONFIG.pix.tipo) {
+    pixTypeLabel.textContent = `Chave ${CONFIG.pix.tipo}`;
+  }
+
+  btnCopy.addEventListener("click", async () => {
+    const chave = CONFIG.pix.chave || pixKeyVal.textContent.trim();
+
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(chave);
+      } else {
+        const tempInput = document.createElement("input");
+        tempInput.value = chave;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+      }
+
+      feedback.textContent = "✅ Chave PIX copiada! Abra o app do seu banco para colar.";
+      feedback.style.color = "#2E7D32";
+      btnCopy.innerHTML = "<span>✓</span> Copiado!";
+
+      setTimeout(() => {
+        btnCopy.innerHTML = "<span>📋</span> Copiar Chave";
+        feedback.textContent = "";
+      }, 4000);
+    } catch (err) {
+      feedback.textContent = "Chave: " + chave;
+      feedback.style.color = "var(--brown-dark)";
+    }
+  });
 }
