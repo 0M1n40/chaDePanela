@@ -75,10 +75,15 @@
 
     <form id="rsvp-form" class="rsvp-form">
       <label>Nome completo
-        <input type="text" id="rsvp-name" required placeholder="Seu nome" />
+        <input type="text" id="rsvp-name" required placeholder="Seu nome completo" />
       </label>
       <label>E-mail
         <input type="email" id="rsvp-email" required placeholder="seuemail@exemplo.com" />
+      </label>
+
+      <label id="rsvp-guests-label">Quantos acompanhantes vão com você?
+        <input type="number" id="rsvp-guests" min="0" max="10" value="0" placeholder="0" />
+        <small class="field-hint">Caso vá sozinho(a), deixe 0.</small>
       </label>
 
       <div class="rsvp-choice">

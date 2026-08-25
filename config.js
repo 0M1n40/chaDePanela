@@ -65,7 +65,7 @@ const CONFIG = {
   // ---------------------------------------------------------------------
   fotosPresentes: {
     "Cortinas 2p": "https://http2.mlstatic.com/D_NQ_NP_914929-MLB70552797564_072023-O.webp",
-    "Tapete para sala 2p": "https://down-br.img.susercontent.com/file/br-11134207-7r98o-ls8qek2tt5iz9b",
+    "Tapete para sala ": "https://down-br.img.susercontent.com/file/br-11134207-7r98o-ls8qek2tt5iz9b",
     "Ventilador": "https://m.media-amazon.com/images/I/41tyT5bVn7L._AC_SX679_.jpg",
     "Jogo de cama 3p": "https://th.bing.com/th/id/OIP.Yj0Uib3w3EPfE4EjdplzvwHaHa?w=170&h=197&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3",
     "Lençol com elástico 2p": "",
@@ -85,7 +85,7 @@ const CONFIG = {
   // ---------------------------------------------------------------------
   // Este mesmo link agora também é usado pela Confirmação de Presença
   // (aba "RSVP" na mesma planilha).
-  appsScriptUrl: "https://script.google.com/macros/s/AKfycbx3Lyf2CLL2Q7TkX65uVCCrkZPxHFJqPC6VmhQRTIqososLM7G2qbVJzX_pgqCcriG4DQ/exec",
+  appsScriptUrl: "https://script.google.com/macros/s/AKfycbyB0NWQOGL05UdZqbk6ubkb8bCu70LnZZh9SeC6sR5UskFQCvjmq1jCEIRCsURR5qYKzg/exec",
 
   presentesDemo: [
     {
@@ -223,6 +223,6 @@ const CONFIG = {
   // ---------------------------------------------------------------------
   textos: {
     subAbertura: "Sua presença é o presente mais importante para nós.",
-    avisoFinal: "Para deixar nossas fotos ainda mais bonitas, contamos com você para seguir o dress code acima e para quem for consumir bebidas alcoólicas, pedimos que traga oque for beber!🍻"
+    avisoFinal: "Para deixar nossas fotos ainda mais bonitas, contamos com você para seguir o dress code acima!"
   },
 };

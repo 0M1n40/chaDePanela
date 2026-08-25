@@ -518,3 +518,309 @@ form input:focus { outline: 2px solid var(--gold); }
   font-style: italic;
   font-weight: bold;
 }
+
+/* ==========================================================================
+   PALETA DE CORES & CARRINHO DE PRESENTES
+   ========================================================================== */
+
+/* Card de Preferência de Cores */
+.color-palette-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px 20px;
+  max-width: 540px;
+  margin: 0 auto 36px;
+  text-align: center;
+}
+
+.palette-title {
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  font-weight: 600;
+  color: var(--brown-dark);
+  margin-bottom: 18px;
+}
+
+.palette-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.palette-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.palette-item span {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--brown-dark);
+}
+
+.palette-circle {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* Círculos fiéis à imagem */
+.circle-branco {
+  background: #FFFFFF;
+  border: 1.5px solid #222222;
+}
+
+.circle-preto {
+  background: #111111;
+}
+
+.circle-inox {
+  background: linear-gradient(135deg, #e6e6e6 0%, #8d979d 50%, #dcdcdc 100%);
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+.circle-bambu {
+  background: #DEB887;
+  background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.12) 0px, rgba(255,255,255,0.12) 2px, transparent 2px, transparent 6px);
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+/* Estado de Seleção no Card */
+.gift-card.selected-in-cart {
+  border-color: var(--gold);
+  background: #FDFBF7;
+  transform: translateY(-2px);
+}
+
+.gift-status.in-cart {
+  background: #FEF3C7;
+  color: #92400E;
+  font-weight: 600;
+}
+
+/* Barra Flutuante da Sacola */
+.cart-bar {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(120px);
+  background: var(--brown-dark);
+  color: var(--white);
+  padding: 14px 22px;
+  border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  z-index: 90;
+  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.cart-bar.visible {
+  transform: translateX(-50%) translateY(0);
+}
+
+.cart-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.cart-count-badge {
+  background: var(--gold);
+  color: var(--white);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.btn-cart-action {
+  width: auto;
+  padding: 8px 18px;
+  font-size: 0.85rem;
+  background: var(--gold);
+  border-radius: 999px;
+}
+.btn-cart-action:hover {
+  background: var(--brown-mid);
+}
+
+/* Lista dentro do Modal */
+.cart-items-list {
+  max-height: 160px;
+  overflow-y: auto;
+  margin: 12px 0 18px;
+  padding: 8px;
+  background: var(--bg-cream);
+  border-radius: 10px;
+  text-align: left;
+}
+
+.cart-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 4px;
+  border-bottom: 1px dashed var(--brown-light);
+  font-size: 0.88rem;
+}
+.cart-item-row:last-child {
+  border-bottom: none;
+}
+
+.btn-remove-item {
+  background: none;
+  border: none;
+  color: #8B3A3A;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+/* ==========================================================================
+   BARRA FLUTUANTE DA SACOLA (CARRINHO) — REFINADA PARA DESKTOP E MOBILE
+   ========================================================================== */
+.cart-bar {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(140px);
+  width: calc(100% - 32px);
+  max-width: 480px;
+  background: rgba(92, 58, 33, 0.96);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--white);
+  padding: 12px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(184, 135, 90, 0.35);
+  box-shadow: 0 12px 32px rgba(45, 26, 12, 0.28);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  z-index: 99;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cart-bar.visible {
+  transform: translateX(-50%) translateY(0);
+}
+
+.cart-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cart-count-badge {
+  background: var(--gold);
+  color: var(--white);
+  min-width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.cart-text {
+  font-size: 0.88rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.btn-cart-action {
+  width: auto;
+  padding: 11px 18px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  background: var(--gold);
+  color: var(--white);
+  border: none;
+  border-radius: 10px;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.btn-cart-action:hover {
+  background: #a37348;
+}
+
+.btn-cart-action:active {
+  transform: scale(0.98);
+}
+
+/* Ajuste específico para telas menores */
+@media (max-width: 420px) {
+  .cart-bar {
+    bottom: 14px;
+    padding: 10px 14px;
+  }
+  
+  .cart-text {
+    font-size: 0.82rem;
+  }
+  
+  .btn-cart-action {
+    padding: 10px 14px;
+    font-size: 0.82rem;
+  }
+} 
+
+/* Campo de Acompanhantes no RSVP */
+#rsvp-guests {
+  width: 100%;
+  margin-top: 6px;
+  padding: 12px 14px;
+  border: 1.5px solid var(--brown-light);
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  background: var(--bg-cream);
+}
+
+.field-hint {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--brown-mid);
+  margin-top: 4px;
+}
+
+/* Alerta de Lembrete de Presença dentro do Modal */
+.rsvp-reminder-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #FFF9E6;
+  border-left: 4px solid #D97706;
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin: 14px 0;
+  text-align: left;
+  font-size: 0.8rem;
+  color: #78350F;
+  line-height: 1.4;
+}
+
+.rsvp-reminder-alert span {
+  font-size: 1.1rem;
+}

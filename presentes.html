@@ -23,11 +23,34 @@
 
     <div class="gifts-page-header">
       <h1 class="section-title">🎁 Lista de Presentes</h1>
-      <p class="section-sub">Escolha um mimo com carinho para o nosso novo lar 💛 Ao selecionar, o item fica reservado só para você — assim ninguém repete o mesmo presente.</p>
+      <p class="section-sub">Selecione um ou mais mimos para o nosso novo lar 💛 Você pode adicionar vários à sua sacola e confirmar todos de uma única vez!</p>
+    </div>
+
+    <!-- PREFERÊNCIA DE CORES -->
+    <div class="color-palette-card">
+      <h3 class="palette-title">PREFERÊNCIA DE CORES</h3>
+      <div class="palette-grid">
+        <div class="palette-item">
+          <div class="palette-circle circle-branco"></div>
+          <span>BRANCO</span>
+        </div>
+        <div class="palette-item">
+          <div class="palette-circle circle-preto"></div>
+          <span>PRETO</span>
+        </div>
+        <div class="palette-item">
+          <div class="palette-circle circle-inox"></div>
+          <span>INOX/CINZA</span>
+        </div>
+        <div class="palette-item">
+          <div class="palette-circle circle-bambu"></div>
+          <span>BAMBU</span>
+        </div>
+      </div>
     </div>
 
     <div id="presentes-demo-banner" class="demo-banner" style="display:none;">
-      ⚠️ Modo demonstração: configure o Apps Script em <code>config.js</code> para que as reservas sejam salvas de verdade e compartilhadas entre todos os convidados.
+      ⚠️ Modo demonstração: configure o Apps Script em <code>config.js</code> para salvar as reservas.
     </div>
 
     <div id="presentes-loading" class="loading">Carregando lista de presentes...</div>
@@ -37,19 +60,43 @@
     <a href="index.html" class="btn-voltar" style="margin-top: 40px;">← Voltar para o convite</a>
   </section>
 
+  <!-- BARRA FLUTUANTE DO CARRINHO / SACOLA -->
+  <div class="cart-bar" id="cart-bar">
+    <div class="cart-info">
+      <span class="cart-count-badge" id="cart-count">0</span>
+      <span class="cart-text">presente(s) selecionado(s)</span>
+    </div>
+    <button class="btn-primary btn-cart-action" id="btn-open-cart">
+      Revisar e Reservar 🎁
+    </button>
+  </div>
+
+  <!-- MODAL DE FINALIZAÇÃO (CARRINHO) -->
   <div class="modal-overlay" id="gift-modal">
     <div class="modal-box">
       <button class="modal-close" id="gift-modal-close">&times;</button>
-      <h3 id="gift-modal-title">Reservar presente</h3>
-      <p class="modal-item-name" id="gift-modal-item"></p>
+      <h3>Finalizar Reserva</h3>
+      <p class="modal-sub">Itens selecionados na sua sacola:</p>
+      
+      <div class="cart-items-list" id="cart-items-list"></div>
+
+      <!-- ALERTA DE CONFIRMAÇÃO DE PRESENÇA -->
+      <div class="rsvp-reminder-alert">
+        <span>⚠️</span>
+        <div>
+          <strong>Lembrete importante:</strong><br>
+          A reserva do presente <u>não</u> substitui a confirmação de presença. Não se esqueça de confirmar no convite para a contagem do convidados!
+        </div>
+      </div>
+
       <form id="gift-form">
-        <label>Seu nome
+        <label>Seu nome completo
           <input type="text" id="gift-name" required placeholder="Ex: Maria Silva" />
         </label>
         <label>Seu e-mail
           <input type="email" id="gift-email" required placeholder="Ex: maria@email.com" />
         </label>
-        <button type="submit" class="btn-primary">Confirmar reserva 🎁</button>
+        <button type="submit" class="btn-primary" id="btn-submit-gift">Confirmar Reserva 💌</button>
       </form>
       <p class="modal-feedback" id="gift-feedback"></p>
     </div>
@@ -59,7 +106,7 @@
     <p>Feito com 💛 para o nosso Chá de Panela</p>
   </footer>
 
-</div><!-- /#page -->
+</div>
 
 <script src="config.js"></script>
 <script src="script.js"></script>
