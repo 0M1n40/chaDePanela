@@ -41,7 +41,7 @@ function configurarImagensPorDispositivo() {
     // Versão Computador: usa convitePC.png e fundoPC
     container.innerHTML = `
       <img
-        src="assets/convitePC.png"
+        src="assets/convite2.png"
         alt="Convite Chá de Panela"
         class="hero-image"
       />
