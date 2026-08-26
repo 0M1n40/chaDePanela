@@ -39,7 +39,7 @@ body {
   /*background-image: url("assets/fundo.png"); /* ou fundoPC.png dependendo de onde estiver */
   background-repeat: repeat;    /* Faz o fundo se multiplicar/repetir */
   background-size: auto;        /* Mantém o tamanho original da imagem */
-  filter: blur(6px) saturate(1.2) brightness(1.18); /* Ajuste o desfoque se preferir */
+  filter: blur(6px) saturate(1.2) brightness(1.1); /* Ajuste o desfoque se preferir */
   opacity: 1;
 }
 
