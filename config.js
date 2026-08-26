@@ -129,7 +129,7 @@ const CONFIG = {
     "Ralador": "https://down-br.img.susercontent.com/file/br-11134207-7r98o-m32h2v764nwz1d",
     "Kit de peneiras": "https://m.media-amazon.com/images/I/71A3ImQhfHL._AC_UF894,1000_QL80_.jpg",
     "Espremedor de limão": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQFLcjnet0lArW-Q5TFMCjuzKeEb7d8ziwIS76IVl_tGfpRJHE0Q3aEJfKJpiLlwYLbpP20IcQw7FNRaxc9oNHQkKvftCWaQ6mWLV25UgXoq31ktpvtrsiB1A",
-    "Medidores de xícara": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNIiXKDBzpPJYqsQH_hoy_IxS5O7OkBD-ty4tYflPeosMuSKTTxW4_bRw&s=10",
+    "Copo Medidor": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNIiXKDBzpPJYqsQH_hoy_IxS5O7OkBD-ty4tYflPeosMuSKTTxW4_bRw&s=10",
     "Funil": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Kitchen_Funnel.jpg/250px-Kitchen_Funnel.jpg",
     "Tesoura de cozinha": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSTQaBMl8Yn6c0Ccl1KzGSN4Z_ZqSxRI-ejujvc18exfIwm9M1h9osiqBtBoqAcQoTDC2t_f99LBE49-GrxYKVhV7Xy4vf0bXYYJkgFE84DeA3dTAiA0Ic",
     "Pegador de massa": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVCQOpF4AMWBRiGTSlE-kudKf-4M4dv8BnBzcq-_qCmUzl0DgDLUvF3ms&s=10",
