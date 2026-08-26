@@ -19,13 +19,9 @@
 
 <div id="page">
 
-  <!-- ================= HERO = IMAGEM DO CONVITE, COMPLETA ================= -->
+<!-- ================= HERO = IMAGEM DO CONVITE (DINÂMICA) ================= -->
   <section class="hero" id="hero">
-    <img
-      src="assets/convite.jpg"
-      alt="Convite Chá de Panela de Ricardo e Norma — 10 de outubro de 2026 às 15h30"
-      class="hero-image"
-    />
+    <div id="hero-convite-container"></div>
     <div class="hero-caption">
       <p class="hero-sub" id="txt-sub-abertura"></p>
       <a href="#detalhes" class="scroll-cta">Ver detalhes ↓</a>
@@ -71,7 +67,7 @@
   <!-- ================= CONFIRMAÇÃO DE PRESENÇA ================= -->
   <section class="section" id="rsvp">
     <h2 class="section-title">Confirmação de Presença</h2>
-    <p class="section-sub">Por favor, confirme até <strong>03/10/2026</strong> para que possamos nos organizar 💌</p>
+    <p class="section-sub"> <strong>Por favor, confirme até03/10/2026 para que possamos nos organizar 💌</strong> </p>
 
     <form id="rsvp-form" class="rsvp-form">
       <label>Nome completo
@@ -98,7 +94,31 @@
       <input type="hidden" id="rsvp-selected" value="" />
     </form>
     <p class="rsvp-feedback" id="rsvp-feedback"></p>
+    <!-- Botão para gerenciar/cancelar RSVP -->
+    <button type="button" class="btn-cancelar-trigger" id="btn-open-cancel-rsvp" style="margin-top: 20px;">
+      🔄 Precisa alterar ou cancelar sua confirmação de presença? Clique aqui
+    </button>
   </section>
+  </section>
+
+  <!-- MODAL GERENCIAR / CANCELAR RSVP -->
+  <div class="modal-overlay" id="cancel-rsvp-modal">
+    <div class="modal-box">
+      <button class="modal-close" id="cancel-rsvp-modal-close">&times;</button>
+      <h3>Gerenciar Presença</h3>
+      <p class="modal-sub">Informe seu e-mail para consultar sua resposta ou cancelar a confirmação:</p>
+
+      <form id="cancel-rsvp-form">
+        <label>Seu e-mail cadastrado
+          <input type="email" id="cancel-rsvp-email" required placeholder="seuemail@exemplo.com" />
+        </label>
+        <button type="submit" class="btn-primary" id="btn-buscar-rsvp">Consultar Presença 🔍</button>
+      </form>
+
+      <div id="cancel-rsvp-result" class="cancel-results-list" style="display: none;"></div>
+      <p class="modal-feedback" id="cancel-rsvp-feedback"></p>
+    </div>
+  </div>
 
   <!-- ================= MAPA ================= -->
   <section class="section alt" id="mapa">

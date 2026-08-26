@@ -21,9 +21,13 @@
   <section class="section" id="presentes-page">
     <a href="index.html" class="btn-voltar">← Voltar para o convite</a>
 
-    <div class="gifts-page-header">
+   <div class="gifts-page-header">
       <h1 class="section-title">🎁 Lista de Presentes</h1>
       <p class="section-sub">Selecione um ou mais mimos para o nosso novo lar 💛 Você pode adicionar vários à sua sacola e confirmar todos de uma única vez!</p>
+      
+      <button type="button" class="btn-cancelar-trigger" id="btn-open-cancel-modal">
+        🔄 Precisa liberar ou trocar um presente que reservou? Clique aqui
+      </button>
     </div>
 
     <!-- PREFERÊNCIA DE CORES -->
@@ -124,6 +128,25 @@
   <footer class="footer">
     <p>Feito com 💛 para o nosso Chá de Panela</p>
   </footer>
+
+  <!-- MODAL GERENCIAR / CANCELAR RESERVAS -->
+  <div class="modal-overlay" id="cancel-modal">
+    <div class="modal-box">
+      <button class="modal-close" id="cancel-modal-close">&times;</button>
+      <h3>Minhas Reservas</h3>
+      <p class="modal-sub">Informe seu e-mail para localizar seus itens e liberá-los de volta para a lista:</p>
+
+      <form id="cancel-search-form">
+        <label>Seu e-mail cadastrado
+          <input type="email" id="cancel-email-input" required placeholder="seuemail@exemplo.com" />
+        </label>
+        <button type="submit" class="btn-primary" id="btn-buscar-reservas">Buscar Presentes 🔍</button>
+      </form>
+
+      <div id="cancel-results-list" class="cancel-results-list" style="display: none;"></div>
+      <p class="modal-feedback" id="cancel-feedback"></p>
+    </div>
+  </div>
 
 </div>
 

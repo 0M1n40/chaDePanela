@@ -95,7 +95,7 @@ const CONFIG = {
   // ---------------------------------------------------------------------
   // Este mesmo link agora também é usado pela Confirmação de Presença
   // (aba "RSVP" na mesma planilha).
-  appsScriptUrl: "https://script.google.com/macros/s/AKfycbwZivPIAEZL0jmJ3rDNxNCR733CECikWG3Sz4VdN-U_MXVgG2A_HRBPgWM6GqaRoF90hQ/exec",
+  appsScriptUrl: "https://script.google.com/macros/s/AKfycbyMjYm9lmIYTQ_Vak3ckwksCKZeurfODvIHg-DdjDpxQ7TGOAKyN9vxrc0YPm07g_tDww/exec",
 
   presentesDemo: [
     {

@@ -36,12 +36,11 @@ body {
   position: fixed;
   inset: 0;
   z-index: 0;
-  background-image: url("assets/convite.jpg");
-  background-size: cover;
-  background-position: center;
-  filter: blur(60px) saturate(1.15) brightness(1.08);
-  transform: scale(1.15);
-  opacity: 0.35;
+  /*background-image: url("assets/fundo.png"); /* ou fundoPC.png dependendo de onde estiver */
+  background-repeat: repeat;    /* Faz o fundo se multiplicar/repetir */
+  background-size: auto;        /* Mantém o tamanho original da imagem */
+  filter: blur(8px) saturate(1.1) brightness(1.1); /* Ajuste o desfoque se preferir */
+  opacity: 1;
 }
 
 #page {
@@ -440,9 +439,16 @@ form input:focus { outline: 2px solid var(--gold); }
 }
 
 .rsvp-form {
-  max-width: 420px;
+  max-width: 440px;
   margin: 0 auto;
   text-align: left;
+  background: rgba(255, 255, 255, 0.85); /* Fundo branco levemente transparente */
+  backdrop-filter: blur(8px);            /* Efeito fosco elegante */
+  -webkit-backdrop-filter: blur(8px);
+  padding: 32px 28px;
+  border-radius: var(--radius);         /* Arredondamento padrão do site */
+  box-shadow: var(--shadow);            /* Sombra suave */
+  border: 1.5px solid var(--brown-light); /* Borda sutil com tom do tema */
 }
 
 .rsvp-choice {
@@ -876,4 +882,71 @@ form input:focus { outline: 2px solid var(--gold); }
     padding: 10px 14px;
     font-size: 0.82rem;
   }
+}
+/* Botão discreto no cabeçalho */
+.btn-cancelar-trigger {
+  background: none;
+  border: none;
+  color: var(--brown-mid);
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-decoration: underline;
+  cursor: pointer;
+  margin: 10px auto 16px;
+  display: block;
+  transition: color 0.2s ease;
+}
+.btn-cancelar-trigger:hover {
+  color: var(--brown-dark);
+}
+
+/* Lista de itens para liberação */
+.cancel-results-list {
+  margin-top: 16px;
+  background: var(--bg-cream);
+  border-radius: 10px;
+  padding: 8px 12px;
+  max-height: 180px;
+  overflow-y: auto;
+  text-align: left;
+}
+
+.cancel-item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--brown-light);
+  font-size: 0.88rem;
+}
+.cancel-item-row:last-child {
+  border-bottom: none;
+}
+
+.btn-liberar-item {
+  background: #F3E4E4;
+  color: #8B3A3A;
+  border: 1px solid #E0B4B4;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-liberar-item:hover {
+  background: #8B3A3A;
+  color: #FFFFFF;
+}
+
+
+/* Remove a imagem de fundo desfocada apenas na página de presentes */
+body:has(#presentes-page) .site-bg-blur {
+  display: none !important;
+}
+
+/* Garante que o fundo da página de presentes seja a cor sólida */
+body:has(#presentes-page),
+body:has(#presentes-page) html {
+  background-color: var(--bg-cream-alt) !important;
 }

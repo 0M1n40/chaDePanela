@@ -16,6 +16,41 @@ function renderizarIcone(valor) {
   }
   return valor;
 }
+/* ---------------- ADAPTAÇÃO AUTOMÁTICA PC / CELULAR ---------------- */
+function configurarImagensPorDispositivo() {
+  const container = document.getElementById("hero-convite-container");
+  const siteBgBlur = document.querySelector(".site-bg-blur");
+  if (!container) return;
+
+  // Detecta se é celular (largura de tela menor ou igual a 768px)
+  const ehCelular = window.innerWidth <= 768;
+
+  if (ehCelular) {
+  
+    container.innerHTML = `
+      <img
+        src="assets/convite2.png"
+        alt="Convite Chá de Panela"
+        class="hero-image"
+      />
+    `;
+    if (siteBgBlur) {
+      siteBgBlur.style.backgroundImage = 'url("assets/fundo.png")';
+    }
+  } else {
+    // Versão Computador: usa convitePC.png e fundoPC
+    container.innerHTML = `
+      <img
+        src="assets/convitePC.png"
+        alt="Convite Chá de Panela"
+        class="hero-image"
+      />
+    `;
+    if (siteBgBlur) {
+      siteBgBlur.style.backgroundImage = 'url("assets/fundoPC.png")';
+    }
+  }
+}
 
 /* ---------------- GESTÃO DE LOCALSTORAGE ---------------- */
 function salvarDadosConvidado(nome, email) {
@@ -44,6 +79,8 @@ function preencherCamposLocalStorage() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  configurarModalCancelamentoRSVP();
+  configurarModalCancelamento();
   configurarPix();
   preencherTextosEstaticos();
   preencherDetalhesEvento();
@@ -55,6 +92,8 @@ document.addEventListener("DOMContentLoaded", () => {
   carregarListaDePresentes();
   configurarCarrinhoEModal();
   preencherCamposLocalStorage();
+
+  configurarImagensPorDispositivo();
 });
 
 /* ---------------- INDEX / RSVP ---------------- */
@@ -462,6 +501,223 @@ function configurarPix() {
     } catch (err) {
       feedback.textContent = "Chave: " + chave;
       feedback.style.color = "var(--brown-dark)";
+    }
+  });
+}
+/* ==========================================================================
+   GERENCIAR / CANCELAR RESERVAS DE PRESENTES
+   ========================================================================== */
+function configurarModalCancelamento() {
+  const modal = document.getElementById("cancel-modal");
+  const btnOpen = document.getElementById("btn-open-cancel-modal");
+  const btnClose = document.getElementById("cancel-modal-close");
+  const form = document.getElementById("cancel-search-form");
+  const emailInput = document.getElementById("cancel-email-input");
+  const resultsList = document.getElementById("cancel-results-list");
+  const feedback = document.getElementById("cancel-feedback");
+
+  if (!modal || !btnOpen) return;
+
+  // Abre o modal e preenche com o e-mail do localStorage (se houver)
+  btnOpen.addEventListener("click", () => {
+    const dados = obterDadosConvidado();
+    if (dados.email && emailInput) emailInput.value = dados.email;
+    resultsList.style.display = "none";
+    resultsList.innerHTML = "";
+    feedback.textContent = "";
+    modal.classList.add("open");
+  });
+
+  btnClose.addEventListener("click", () => modal.classList.remove("open"));
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) modal.classList.remove("open");
+  });
+
+  // Busca os presentes reservados pelo e-mail
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = emailInput.value.trim();
+    if (!email) return;
+
+    feedback.textContent = "Buscando reservas...";
+    feedback.style.color = "var(--brown-mid)";
+    resultsList.style.display = "none";
+    resultsList.innerHTML = "";
+
+    try {
+      const resp = await fetch(CONFIG.appsScriptUrl, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify({ action: "buscarMinhasReservas", email: email }),
+      });
+      const dados = await resp.json();
+
+      if (dados.itens && dados.itens.length > 0) {
+        feedback.textContent = `Encontramos ${dados.itens.length} presente(s) reservados:`;
+        feedback.style.color = "#2E7D32";
+        renderizarItensParaCancelamento(dados.itens, email);
+      } else {
+        feedback.textContent = "Nenhum presente reservado com este e-mail.";
+        feedback.style.color = "var(--brown-mid)";
+      }
+    } catch (err) {
+      feedback.textContent = "Erro ao buscar reservas. Tente novamente.";
+      feedback.style.color = "#8B3A3A";
+    }
+  });
+}
+
+function renderizarItensParaCancelamento(itens, email) {
+  const container = document.getElementById("cancel-results-list");
+  container.innerHTML = "";
+  container.style.display = "block";
+
+  itens.forEach((item) => {
+    const row = document.createElement("div");
+    row.className = "cancel-item-row";
+    row.innerHTML = `
+      <span>🎁 <strong>${item}</strong></span>
+      <button type="button" class="btn-liberar-item">Liberar</button>
+    `;
+
+    const btnLiberar = row.querySelector(".btn-liberar-item");
+    btnLiberar.addEventListener("click", async () => {
+      btnLiberar.disabled = true;
+      btnLiberar.textContent = "Liberando...";
+
+      const sucesso = await cancelarReservaNoBackend(item, email);
+      if (sucesso) {
+        row.remove();
+        carregarListaDePresentes(); // Atualiza a vitrine na hora
+        const restantes = container.querySelectorAll(".cancel-item-row").length;
+        if (restantes === 0) {
+          container.style.display = "none";
+          document.getElementById("cancel-feedback").textContent = "Todos os itens foram liberados com sucesso!";
+        }
+      } else {
+        btnLiberar.disabled = false;
+        btnLiberar.textContent = "Erro";
+      }
+    });
+
+    container.appendChild(row);
+  });
+}
+
+async function cancelarReservaNoBackend(item, email) {
+  try {
+    const resp = await fetch(CONFIG.appsScriptUrl, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({ action: "cancelarReserva", item: item, email: email }),
+    });
+    const dados = await resp.json();
+    return dados.sucesso === true;
+  } catch (err) {
+    console.error(err);
+    return false;
+  }
+}
+/* ---------------- GERENCIAR / CANCELAR RSVP ---------------- */
+function configurarModalCancelamentoRSVP() {
+  const modal = document.getElementById("cancel-rsvp-modal");
+  const btnOpen = document.getElementById("btn-open-cancel-rsvp");
+  const btnClose = document.getElementById("cancel-rsvp-modal-close");
+  const form = document.getElementById("cancel-rsvp-form");
+  const emailInput = document.getElementById("cancel-rsvp-email");
+  const resultDiv = document.getElementById("cancel-rsvp-result");
+  const feedback = document.getElementById("cancel-rsvp-feedback");
+
+  if (!modal || !btnOpen) return;
+
+  btnOpen.addEventListener("click", () => {
+    const dados = obterDadosConvidado();
+    if (dados.email && emailInput) emailInput.value = dados.email;
+    resultDiv.style.display = "none";
+    resultDiv.innerHTML = "";
+    feedback.textContent = "";
+    modal.classList.add("open");
+  });
+
+  btnClose.addEventListener("click", () => modal.classList.remove("open"));
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) modal.classList.remove("open");
+  });
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = emailInput.value.trim();
+    if (!email) return;
+
+    feedback.textContent = "Buscando confirmação...";
+    feedback.style.color = "var(--brown-mid)";
+    resultDiv.style.display = "none";
+
+    try {
+      const resp = await fetch(CONFIG.appsScriptUrl, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify({ action: "buscarMeuRSVP", email: email }),
+      });
+      const dados = await resp.json();
+
+      if (dados.sucesso && dados.rsvp) {
+        feedback.textContent = "Confirmação encontrada:";
+        feedback.style.color = "#2E7D32";
+        renderizarDetalhesRSVP(dados.rsvp, email);
+      } else {
+        feedback.textContent = "Nenhuma confirmação encontrada para este e-mail.";
+        feedback.style.color = "#8B3A3A";
+      }
+    } catch (err) {
+      feedback.textContent = "Erro ao buscar dados. Tente novamente.";
+      feedback.style.color = "#8B3A3A";
+    }
+  });
+}
+
+function renderizarDetalhesRSVP(rsvp, email) {
+  const container = document.getElementById("cancel-rsvp-result");
+  container.innerHTML = "";
+  container.style.display = "block";
+
+  container.innerHTML = `
+    <div style="padding: 6px 0; font-size: 0.9rem; margin-bottom: 10px;">
+      <p><strong>Nome:</strong> ${rsvp.nome}</p>
+      <p><strong>Status:</strong> ${rsvp.confirmacao}</p>
+      <p><strong>Acompanhantes:</strong> ${rsvp.acompanhantes}</p>
+    </div>
+    <button type="button" id="btn-deletar-rsvp" class="btn-liberar-item" style="width:100%; padding: 8px; font-size: 0.85rem;">
+      🗑️ Cancelar / Apagar minha confirmação
+    </button>
+  `;
+
+  document.getElementById("btn-deletar-rsvp").addEventListener("click", async () => {
+    if (!confirm("Tem certeza que deseja apagar sua confirmação de presença?")) return;
+
+    const btn = document.getElementById("btn-deletar-rsvp");
+    btn.disabled = true;
+    btn.textContent = "Cancelando...";
+
+    try {
+      const resp = await fetch(CONFIG.appsScriptUrl, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify({ action: "cancelarRSVP", email: email }),
+      });
+      const dados = await resp.json();
+
+      if (dados.sucesso) {
+        container.style.display = "none";
+        document.getElementById("cancel-rsvp-feedback").textContent = "Presença cancelada com sucesso da nossa lista!";
+        document.getElementById("cancel-rsvp-feedback").style.color = "#2E7D32";
+      } else {
+        btn.disabled = false;
+        btn.textContent = "Erro ao cancelar. Tente novamente.";
+      }
+    } catch (err) {
+      btn.disabled = false;
+      console.error(err);
     }
   });
 }
